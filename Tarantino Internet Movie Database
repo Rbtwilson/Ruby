@@ -1,0 +1,45 @@
+movies = {
+    django: 10
+    pulp_fiction: 9
+    hateful_eight: 7
+    resivior_dogs: 6
+}
+puts "Welcome to the TMDB; add, update, display, or delete?"
+choice = gets.chomp
+
+case choice
+when "add"
+    puts "What is the title of the movie?"
+    title = gets.chomp
+        if movies[title.to_sym].nil?         
+            puts "From 1 - 10 how good is the movie?"
+            rating = gets.chomp
+                movies[title.to_sym] = rating.to_i 
+        else
+            puts "We got it"
+    end
+when "update"
+    puts "What is the title of the movie?"
+    title = gets.chomp
+        if movies[title.to_sym].nil? 
+            puts "You should try adding that first..."
+        else
+            puts "From 1 - 10 how good is the movie NOW?"
+            rating = gets.chomp
+                movies[title.to_sym] = rating.to_i
+    end
+when "display"
+    movies.each do |movie, rating|
+    puts "#{movie}: #{rating}"
+end
+when "delete"
+     puts "What is the title of the movie?"
+    title = gets.chomp
+        if movies[title.to_sym].nil? 
+            puts "You should try adding that first..."
+        else movies.delete(title.to_sym)
+            puts "Deleted"
+    end
+else
+    puts "Error!"
+end
